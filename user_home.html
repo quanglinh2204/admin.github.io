@@ -1,0 +1,41 @@
+<!-- user_home.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Home</title>
+</head>
+<body>
+    <h1>Welcome, {{ current_user.username }}!</h1>
+
+    <h2>Quoc Gia </h2>
+    <form method="POST">
+        {{ form_quocgia.hidden_tag() }}
+        {{ form_quocgia.ma.label }} {{ form_quocgia.ma(size=50) }}
+        {{ form_quocgia.ten.label }} {{ form_quocgia.ten(size=50) }}
+        {{ form_quocgia.submit() }}
+    </form>
+    <ul>
+        {% for quocgia in quocgias %}
+            <li>{{ quocgia.ma }} - {{ quocgia.ten }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Tinh Thanh </h2>
+    <form method="POST">
+        {{ form_tinhthanh.hidden_tag() }}
+        {{ form_tinhthanh.ma.label }} {{ form_tinhthanh.ma(size=50) }}
+        {{ form_tinhthanh.ten.label }} {{ form_tinhthanh.ten(size=50) }}
+
+        {{ form_tinhthanh.submit() }}
+    </form>
+    <ul>
+        {% for tinhthanh in tinhthanhs %}
+            <li>{{ tinhthanh.ma }} - {{ tinhthanh.ten }}</li>
+        {% endfor %}
+    </ul>
+
+    <p><a href="{{ url_for('logout') }}">Logout</a></p>
+</body>
+</html>
